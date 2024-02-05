@@ -1,3 +1,3 @@
-# genshinfan
+# Genshin Fan
 
-A new Flutter project.
+GenshinFan power by KanThin.
