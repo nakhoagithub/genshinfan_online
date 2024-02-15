@@ -8,6 +8,21 @@ class CharacterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CharacterController());
-    return Scaffold();
+    return const Scaffold(
+      body: _Body(),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context) {
+    CharacterController characterController = Get.find<CharacterController>();
+    return Obx(() {
+      bool loading = characterController.loading.value;
+      return loading ? LinearProgressIndicator() : SizedBox();
+    });
   }
 }

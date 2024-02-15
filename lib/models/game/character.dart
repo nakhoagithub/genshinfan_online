@@ -54,13 +54,13 @@ class CharacterWeaponType {
 
 class CharacterView {
   final dynamic id;
-  final int rank;
+  final num rank;
   final String name;
   final String element;
   final String weaponType;
   final String icon;
-  final List<int> birthday;
-  final int? release;
+  final List<num> birthday;
+  final num? release;
   final String route;
 
   CharacterView({
@@ -83,7 +83,7 @@ class CharacterView {
         weaponType: json["weaponType"],
         icon: json["icon"],
         birthday:
-            List<int>.from((json["birthday"] as List? ?? []).map((x) => x)),
+            List<num>.from((json["birthday"] as List? ?? []).map((x) => x)),
         release: json["release"],
         route: json["route"],
       );
@@ -102,19 +102,19 @@ class CharacterView {
 }
 
 class Character {
-  final int? id;
-  final int? rank;
+  final dynamic id;
+  final num? rank;
   final String? name;
   final String? element;
   final String? weaponType;
   final String? icon;
-  final List<int>? birthday;
-  final int? release;
+  final List<num>? birthday;
+  final num? release;
   final String? route;
   final Fetter? fetter;
   final Upgrade? upgrade;
   final Other? other;
-  final Map<String, int>? ascension;
+  final Map<String, num>? ascension;
   final Map<String, Talent>? talent;
   final Map<String, Constellation>? constellation;
 
@@ -145,7 +145,7 @@ class Character {
         icon: json["icon"],
         birthday: json["birthday"] == null
             ? null
-            : List<int>.from((json["birthday"] as List).map((x) => x)),
+            : List<num>.from((json["birthday"] as List).map((x) => x)),
         release: json["release"],
         route: json["route"],
         fetter: json["fetter"] == null ? null : Fetter.fromJson(json["fetter"]),
@@ -155,7 +155,7 @@ class Character {
         ascension: json["ascension"] == null
             ? null
             : Map.from(json["ascension"])
-                .map((k, v) => MapEntry<String, int>(k, v)),
+                .map((k, v) => MapEntry<String, num>(k, v)),
         talent: json["talent"] == null
             ? null
             : Map.from(json["talent"])
@@ -200,8 +200,8 @@ class Constellation {
   final String? description;
   final ExtraData? extraData;
   final String? icon;
-  final int? id;
-  final int? type;
+  final dynamic id;
+  final num? type;
 
   Constellation({
     this.name,
@@ -253,8 +253,8 @@ class ExtraData {
 
 class AddTalentExtraLevel {
   final String? talentType;
-  final int? talentIndex;
-  final int? extraLevel;
+  final num? talentIndex;
+  final num? extraLevel;
 
   AddTalentExtraLevel({
     this.talentType,
@@ -338,7 +338,7 @@ class Cv {
 
 class Other {
   final List<Costume>? costume;
-  final int? furnitureId;
+  final num? furnitureId;
   final Constellation? nameCard;
   final SpecialFood? specialFood;
 
@@ -398,9 +398,9 @@ class Costume {
 }
 
 class SpecialFood {
-  final int? id;
+  final num? id;
   final String? name;
-  final int? rank;
+  final num? rank;
   final String? effectIcon;
   final String? icon;
 
@@ -430,15 +430,15 @@ class SpecialFood {
 }
 
 class Talent {
-  final int? type;
+  final num? type;
   final String? name;
   final String? description;
   final String? icon;
   final Map<String, PromoteValue>? promote;
-  final int? cooldown;
-  final int? cost;
+  final num? cooldown;
+  final num? cost;
   final ExtraData? extraData;
-  final int? id;
+  final dynamic id;
 
   Talent({
     this.type,
@@ -486,11 +486,11 @@ class Talent {
 }
 
 class PromoteValue {
-  final int? level;
-  final Map<String, int>? costItems;
-  final int? coinCost;
+  final num? level;
+  final Map<String, num>? costItems;
+  final num? coinCost;
   final List<String>? description;
-  final List<double>? params;
+  final List<num>? params;
 
   PromoteValue({
     this.level,
@@ -505,15 +505,14 @@ class PromoteValue {
         costItems: json["costItems"] == null
             ? null
             : Map.from(json["costItems"])
-                .map((k, v) => MapEntry<String, int>(k, v)),
+                .map((k, v) => MapEntry<String, num>(k, v)),
         coinCost: json["coinCost"],
         description: json["description"] == null
             ? null
             : List<String>.from((json["description"] as List).map((x) => x)),
         params: json["params"] == null
             ? null
-            : List<double>.from(
-                (json["params"] as List).map((x) => x.toDouble())),
+            : List<num>.from((json["params"] as List).map((x) => x.toDouble())),
       );
 
   Map<String, dynamic> toJson() => {
@@ -562,12 +561,12 @@ class Upgrade {
 }
 
 class PromoteElement {
-  final int? unlockMaxLevel;
-  final int? promoteLevel;
-  final Map<String, int>? costItems;
+  final num? unlockMaxLevel;
+  final num? promoteLevel;
+  final Map<String, num>? costItems;
   final AddProps? addProps;
-  final int? requiredPlayerLevel;
-  final int? coinCost;
+  final num? requiredPlayerLevel;
+  final num? coinCost;
 
   PromoteElement({
     this.unlockMaxLevel,
@@ -584,7 +583,7 @@ class PromoteElement {
         costItems: json["costItems"] == null
             ? null
             : Map.from(json["costItems"])
-                .map((k, v) => MapEntry<String, int>(k, v)),
+                .map((k, v) => MapEntry<String, num>(k, v)),
         addProps: json["addProps"] == null
             ? null
             : AddProps.fromJson(json["addProps"]),
@@ -606,10 +605,10 @@ class PromoteElement {
 }
 
 class AddProps {
-  final double? fightPropBaseHp;
-  final double? fightPropBaseDefense;
-  final double? fightPropBaseAttack;
-  final double? fightPropAttackPercent;
+  final num? fightPropBaseHp;
+  final num? fightPropBaseDefense;
+  final num? fightPropBaseAttack;
+  final num? fightPropAttackPercent;
 
   AddProps({
     this.fightPropBaseHp,
@@ -643,7 +642,7 @@ class AddProps {
 
 class Prop {
   final String? propType;
-  final double? initValue;
+  final num? initValue;
   final String? type;
 
   Prop({
