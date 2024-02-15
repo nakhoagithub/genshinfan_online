@@ -16,17 +16,17 @@ class CharacterService {
       final response = await dio.get("${Config.apiUrl(language)}/avatar");
       ResponseApi responseApi = ResponseApi.fromJson(response.data);
 
-      if (responseApi.code == 200) {
-        CharactersResponse dataRes =
-            CharactersResponse.fromJson(responseApi.data);
+      // if (responseApi.code == 200) {
+      //   CharactersResponse dataRes =
+      //       CharactersResponse.fromJson(responseApi.data);
 
-        for (var v in dataRes.items.values) {
-          CharacterView d = CharacterView.fromJson(v);
-          datas.add(d);
-        }
-      } else {
-        log("${responseApi.toJson()}", name: "CharacterService - getDatas");
-      }
+      //   for (var v in dataRes.items.values) {
+      //     CharacterView d = CharacterView.fromJson(v);
+      //     datas.add(d);
+      //   }
+      // } else {
+      //   log("${responseApi.toJson()}", name: "CharacterService - getDatas");
+      // }
     } catch (e) {
       log("$e", name: "CharacterService - getDatas");
     }
@@ -40,13 +40,13 @@ class CharacterService {
       final response = await dio.get("${Config.apiUrl(language)}/avatar/$id");
       ResponseApi responseApi = ResponseApi.fromJson(response.data);
 
-      if (responseApi.code == 200) {
-        CharactersResponse dataRes =
-            CharactersResponse.fromJson(responseApi.data);
+      // if (responseApi.code == 200) {
+      //   CharactersResponse dataRes =
+      //       CharactersResponse.fromJson(responseApi.data);
 
-      } else {
-        log("${responseApi.toJson()}", name: "CharacterService - getDatas");
-      }
+      // } else {
+      //   log("${responseApi.toJson()}", name: "CharacterService - getDatas");
+      // }
     } catch (e) {
       log("$e", name: "CharacterService - getDatas");
     }
