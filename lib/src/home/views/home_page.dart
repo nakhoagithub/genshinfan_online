@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genshinfan/src/home/controllers/layout_controller.dart';
+import 'package:genshinfan/src/home/pages/character/views/character_page.dart';
 import 'package:genshinfan/utils/config.dart';
 import 'package:genshinfan/widgets/icon_app.dart';
 import 'package:get/get.dart';
@@ -126,7 +127,7 @@ class _Body extends StatelessWidget {
       controller: layoutController.pageController,
       children: [
         Container(color: Colors.red),
-        Container(color: Colors.blue),
+        const CharacterPage(),
         Container(color: Colors.yellowAccent),
         Container(color: Colors.green),
         Container(color: Colors.red),

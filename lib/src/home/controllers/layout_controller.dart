@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:genshinfan/src/home/views/search_bar.dart';
 import 'package:get/get.dart';
 
-class LayoutController extends GetxController {
+class LayoutController extends GetxController with GetTickerProviderStateMixin {
   BuildContext context;
   LayoutController({required this.context});
 
@@ -111,14 +111,13 @@ class LayoutController extends GetxController {
     childAspectRatio.value = widthItem.value / (widthItem.value * 1.215);
     crossAxisCount3.value = widthScreen.value ~/ (widthItem3.value + 4);
     childAspectRatio3.value = widthItem3.value / (widthItem3.value * 1.215);
-
-    print(
-        "${widthItem.value} ${widthScreen.value} ${crossAxisCount.value} ${childAspectRatio.value} ${crossAxisCount3.value} ${childAspectRatio3.value}");
   }
 
   @override
   void onInit() {
     super.onInit();
+
+
     loading.value = true;
     pageController = PageController(initialPage: menu.value, keepPage: true);
     setSizeScreen();

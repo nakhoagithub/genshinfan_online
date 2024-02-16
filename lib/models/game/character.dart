@@ -515,7 +515,7 @@ class PromoteElement {
   final num? unlockMaxLevel;
   final num? promoteLevel;
   final Map<String, num>? costItems;
-  final AddProps? addProps;
+  final Map<String, dynamic>? addProps;
   final num? requiredPlayerLevel;
   final num? coinCost;
 
@@ -535,9 +535,7 @@ class PromoteElement {
             ? null
             : Map.from(json["costItems"])
                 .map((k, v) => MapEntry<String, num>(k, v)),
-        addProps: json["addProps"] == null
-            ? null
-            : AddProps.fromJson(json["addProps"]),
+        addProps: json["addProps"],
         requiredPlayerLevel: json["requiredPlayerLevel"],
         coinCost: json["coinCost"],
       );
@@ -549,37 +547,9 @@ class PromoteElement {
             ? null
             : Map.from(costItems!)
                 .map((k, v) => MapEntry<String, dynamic>(k, v)),
-        "addProps": addProps?.toJson(),
+        "addProps": addProps,
         "requiredPlayerLevel": requiredPlayerLevel,
         "coinCost": coinCost,
-      };
-}
-
-class AddProps {
-  final num? fightPropBaseHp;
-  final num? fightPropBaseDefense;
-  final num? fightPropBaseAttack;
-  final num? fightPropAttackPercent;
-
-  AddProps({
-    this.fightPropBaseHp,
-    this.fightPropBaseDefense,
-    this.fightPropBaseAttack,
-    this.fightPropAttackPercent,
-  });
-
-  factory AddProps.fromJson(Map<String, dynamic> json) => AddProps(
-        fightPropBaseHp: json["FIGHT_PROP_BASE_HP"],
-        fightPropBaseDefense: json["FIGHT_PROP_BASE_DEFENSE"],
-        fightPropBaseAttack: json["FIGHT_PROP_BASE_ATTACK"],
-        fightPropAttackPercent: json["FIGHT_PROP_ATTACK_PERCENT"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "FIGHT_PROP_BASE_HP": fightPropBaseHp,
-        "FIGHT_PROP_BASE_DEFENSE": fightPropBaseDefense,
-        "FIGHT_PROP_BASE_ATTACK": fightPropBaseAttack,
-        "FIGHT_PROP_ATTACK_PERCENT": fightPropAttackPercent,
       };
 }
 
@@ -604,5 +574,71 @@ class Prop {
         "propType": propType,
         "initValue": initValue,
         "type": type,
+      };
+}
+
+class CharacterCurve {
+  final Map<String, CurveValue>? curve;
+
+  CharacterCurve({
+    this.curve,
+  });
+
+  factory CharacterCurve.fromJson(Map<String, dynamic> json) => CharacterCurve(
+        curve: Map.from(json).map(
+            (k, v) => MapEntry<String, CurveValue>(k, CurveValue.fromJson(v))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "curve": curve == null
+            ? null
+            : Map.from(curve!)
+                .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+      };
+}
+
+class CurveValue {
+  final CurveInfos? curveInfos;
+
+  CurveValue({
+    this.curveInfos,
+  });
+
+  factory CurveValue.fromJson(Map<String, dynamic> json) => CurveValue(
+        curveInfos: json["curveInfos"] == null
+            ? null
+            : CurveInfos.fromJson(json["curveInfos"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "curveInfos": curveInfos?.toJson(),
+      };
+}
+
+class CurveInfos {
+  final num? growCurveHpS4;
+  final num? growCurveAttackS4;
+  final num? growCurveHpS5;
+  final num? growCurveAttackS5;
+
+  CurveInfos({
+    this.growCurveHpS4,
+    this.growCurveAttackS4,
+    this.growCurveHpS5,
+    this.growCurveAttackS5,
+  });
+
+  factory CurveInfos.fromJson(Map<String, dynamic> json) => CurveInfos(
+        growCurveHpS4: json["GROW_CURVE_HP_S4"],
+        growCurveAttackS4: json["GROW_CURVE_ATTACK_S4"],
+        growCurveHpS5: json["GROW_CURVE_HP_S5"],
+        growCurveAttackS5: json["GROW_CURVE_ATTACK_S5"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "GROW_CURVE_HP_S4": growCurveHpS4,
+        "GROW_CURVE_ATTACK_S4": growCurveAttackS4,
+        "GROW_CURVE_HP_S5": growCurveHpS5,
+        "GROW_CURVE_ATTACK_S5": growCurveAttackS5,
       };
 }

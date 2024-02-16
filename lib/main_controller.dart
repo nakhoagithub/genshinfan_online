@@ -9,7 +9,7 @@ class MainController extends GetxController {
 
   Connectivity connectivity = Connectivity();
   RxBool connectedInternet = false.obs;
-  RxString language = "en".obs;
+  RxString language = "vi".obs;
   RxList<ResponseLog> resLogs = <ResponseLog>[].obs;
 
   @override

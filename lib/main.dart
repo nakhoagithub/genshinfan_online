@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:genshinfan/src/home/controllers/layout_controller.dart';
-import 'package:genshinfan/src/home/pages/character/views/character_page.dart';
+import 'package:genshinfan/src/home/pages/character/views/character_info_page.dart';
 import 'package:genshinfan/main_controller.dart';
 import 'package:genshinfan/src/home/views/home_page.dart';
 import 'package:genshinfan/src/start/views/start_page.dart';
@@ -57,8 +57,8 @@ class MainApp extends StatelessWidget {
                   page: () => const HomePage(),
                 ),
                 GetPage(
-                  name: "/character",
-                  page: () => const CharacterPage(),
+                  name: '/character-info',
+                  page: () => const CharacterInfoPage(),
                 ),
               ],
             );

@@ -13,7 +13,8 @@ class WeaponService {
     try {
       Dio dio = Dio();
       String language = Get.find<MainController>().language.value;
-      final response = await dio.get("${Config.apiUrl(language)}/weapon");
+      final response =
+          await dio.get("${Config.apiUrl(langCode: language)}/weapon");
       ResponseApi responseApi = ResponseApi.fromJson(response.data);
 
       if (responseApi.code == 200) {
@@ -36,7 +37,8 @@ class WeaponService {
     try {
       Dio dio = Dio();
       String language = Get.find<MainController>().language.value;
-      final response = await dio.get("${Config.apiUrl(language)}/weapon/$id");
+      final response =
+          await dio.get("${Config.apiUrl(langCode: language)}/weapon/$id");
       ResponseApi responseApi = ResponseApi.fromJson(response.data);
 
       if (responseApi.code == 200) {

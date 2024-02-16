@@ -13,7 +13,8 @@ class CharacterService {
     try {
       Dio dio = Dio();
       String language = Get.find<MainController>().language.value;
-      final response = await dio.get("${Config.apiUrl(language)}/avatar");
+      final response =
+          await dio.get("${Config.apiUrl(langCode: language)}/avatar");
       ResponseApi responseApi = ResponseApi.fromJson(response.data);
 
       if (responseApi.code == 200) {
@@ -25,7 +26,7 @@ class CharacterService {
           datas.add(data);
         }
       } else {
-        log("${responseApi.toJson()}", name: "CharacterService - getDatas");
+        log("${responseApi.code}", name: "CharacterService - getDatas");
       }
     } catch (e) {
       log("$e", name: "CharacterService - getDatas");
@@ -37,17 +38,38 @@ class CharacterService {
     try {
       Dio dio = Dio();
       String language = Get.find<MainController>().language.value;
-      final response = await dio.get("${Config.apiUrl(language)}/avatar/$id");
+      final response =
+          await dio.get("${Config.apiUrl(langCode: language)}/avatar/$id");
       ResponseApi responseApi = ResponseApi.fromJson(response.data);
 
       if (responseApi.code == 200) {
         Character dataRes = Character.fromJson(responseApi.data);
         return dataRes;
       } else {
-        log("${responseApi.toJson()}", name: "CharacterService - getDatas");
+        log("${responseApi.code}", name: "CharacterService - getDatas");
       }
     } catch (e) {
       log("$e", name: "CharacterService - getDatas");
+    }
+
+    return null;
+  }
+
+  Future<CharacterCurve?> getCharacterCurves() async {
+    try {
+      Dio dio = Dio();
+      final response = await dio.get("${Config.apiUrl()}static/avatarCurve");
+      ResponseApi responseApi = ResponseApi.fromJson(response.data);
+
+      if (responseApi.code == 200) {
+        CharacterCurve dataRes = CharacterCurve.fromJson(responseApi.data);
+        return dataRes;
+      } else {
+        log("${responseApi.code}",
+            name: "CharacterService - getCharacterCurve");
+      }
+    } catch (e) {
+      log("$e", name: "CharacterService - getCharacterCurve");
     }
 
     return null;
