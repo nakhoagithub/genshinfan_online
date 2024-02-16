@@ -8,8 +8,8 @@ import 'package:genshinfan/utils/config.dart';
 import 'package:get/get.dart';
 
 class CharacterService {
-  Future<List<CharacterView>> getDatas() async {
-    List<CharacterView> datas = [];
+  Future<List<Character>> getDatas() async {
+    List<Character> datas = [];
     try {
       Dio dio = Dio();
       String language = Get.find<MainController>().language.value;
@@ -21,8 +21,8 @@ class CharacterService {
             CharactersResponse.fromJson(responseApi.data);
 
         for (var v in dataRes.items.values) {
-          CharacterView d = CharacterView.fromJson(v);
-          datas.add(d);
+          Character data = Character.fromJson(v);
+          datas.add(data);
         }
       } else {
         log("${responseApi.toJson()}", name: "CharacterService - getDatas");

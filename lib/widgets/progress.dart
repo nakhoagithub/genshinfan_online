@@ -5,7 +5,7 @@ class CircularProgressApp extends StatelessWidget {
   final double strokeWidth;
   const CircularProgressApp({
     super.key,
-    this.size = 14,
+    this.size = 16,
     this.strokeWidth = 1,
   });
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genshinfan/src/home/pages/character/controllers/character_controller.dart';
+import 'package:genshinfan/widgets/progress.dart';
 import 'package:get/get.dart';
 
 class CharacterPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class _Body extends StatelessWidget {
     CharacterController characterController = Get.find<CharacterController>();
     return Obx(() {
       bool loading = characterController.loading.value;
-      return loading ? LinearProgressIndicator() : SizedBox();
+      return loading ? const CircularProgressApp() : SizedBox();
     });
   }
 }

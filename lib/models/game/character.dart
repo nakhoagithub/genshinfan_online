@@ -52,55 +52,6 @@ class CharacterWeaponType {
       };
 }
 
-class CharacterView {
-  final dynamic id;
-  final num rank;
-  final String name;
-  final String element;
-  final String weaponType;
-  final String icon;
-  final List<num> birthday;
-  final num? release;
-  final String route;
-
-  CharacterView({
-    required this.id,
-    required this.rank,
-    required this.name,
-    required this.element,
-    required this.weaponType,
-    required this.icon,
-    required this.birthday,
-    required this.release,
-    required this.route,
-  });
-
-  factory CharacterView.fromJson(Map<String, dynamic> json) => CharacterView(
-        id: json["id"],
-        rank: json["rank"],
-        name: json["name"],
-        element: json["element"],
-        weaponType: json["weaponType"],
-        icon: json["icon"],
-        birthday:
-            List<num>.from((json["birthday"] as List? ?? []).map((x) => x)),
-        release: json["release"],
-        route: json["route"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "rank": rank,
-        "name": name,
-        "element": element,
-        "weaponType": weaponType,
-        "icon": icon,
-        "birthday": List<dynamic>.from(birthday.map((x) => x)),
-        "release": release,
-        "route": route,
-      };
-}
-
 class Character {
   final dynamic id;
   final num? rank;
@@ -512,7 +463,7 @@ class PromoteValue {
             : List<String>.from((json["description"] as List).map((x) => x)),
         params: json["params"] == null
             ? null
-            : List<num>.from((json["params"] as List).map((x) => x.toDouble())),
+            : List<num>.from((json["params"] as List).map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -618,18 +569,10 @@ class AddProps {
   });
 
   factory AddProps.fromJson(Map<String, dynamic> json) => AddProps(
-        fightPropBaseHp: json["FIGHT_PROP_BASE_HP"] == null
-            ? null
-            : (json["FIGHT_PROP_BASE_HP"] as num).toDouble(),
-        fightPropBaseDefense: json["FIGHT_PROP_BASE_DEFENSE"] == null
-            ? null
-            : (json["FIGHT_PROP_BASE_DEFENSE"] as num).toDouble(),
-        fightPropBaseAttack: json["FIGHT_PROP_BASE_ATTACK"] == null
-            ? null
-            : (json["FIGHT_PROP_BASE_ATTACK"] as num).toDouble(),
-        fightPropAttackPercent: json["FIGHT_PROP_ATTACK_PERCENT"] == null
-            ? null
-            : (json["FIGHT_PROP_ATTACK_PERCENT"] as num).toDouble(),
+        fightPropBaseHp: json["FIGHT_PROP_BASE_HP"],
+        fightPropBaseDefense: json["FIGHT_PROP_BASE_DEFENSE"],
+        fightPropBaseAttack: json["FIGHT_PROP_BASE_ATTACK"],
+        fightPropAttackPercent: json["FIGHT_PROP_ATTACK_PERCENT"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -653,9 +596,7 @@ class Prop {
 
   factory Prop.fromJson(Map<String, dynamic> json) => Prop(
         propType: json["propType"],
-        initValue: json["initValue"] == null
-            ? null
-            : (json["initValue"] as num).toDouble(),
+        initValue: json["initValue"],
         type: json["type"],
       );
 

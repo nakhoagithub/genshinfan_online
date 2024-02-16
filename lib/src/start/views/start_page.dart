@@ -8,6 +8,6 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(StartController());
-    return const Placeholder();
+    return const Scaffold();
   }
 }

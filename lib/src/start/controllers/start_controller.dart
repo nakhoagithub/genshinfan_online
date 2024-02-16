@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class StartController extends GetxController {
   Future<void> _init() async {
     await Future.delayed(const Duration(seconds: 2));
-    Get.toNamed("/character");
+    Get.toNamed("/home");
   }
 
   @override
