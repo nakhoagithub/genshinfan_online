@@ -299,7 +299,7 @@ class _Cost extends StatelessWidget {
               ? ListEmpty(title: "empty_cost".tr)
               : Row(
                   children: [
-                    ...(costItems ?? {}).entries.map(
+                    ...costItems.entries.map(
                       (e) {
                         num rank = character?.ascension?[e.key] ?? 1;
                         return ItemGame(
