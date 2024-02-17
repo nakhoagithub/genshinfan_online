@@ -6,6 +6,73 @@ class Tool {
     return "";
   }
 
+  static String handleParameter(num value, String format) {
+    String result = value.toString();
+    // integer
+    if (format.startsWith("I")) {
+      result = value.toStringAsFixed(0);
+    }
+    // percent
+    if (format.contains("P")) {
+      result = (value * 100.0).toStringAsFixed(0);
+    }
+    // format số thập phân
+    if (format.startsWith("F")) {
+      int countFixed = 0;
+      if (format.length > 1) {
+        countFixed = int.parse(format[1]);
+      }
+      result = num.parse(result).toStringAsFixed(countFixed);
+    }
+    // percent thêm %
+    if (format.endsWith("P")) {
+      result = "$result%";
+    }
+    return result;
+  }
+
+  static String handleParamTalent(String text, List<num>? params) {
+    String result = text;
+    RegExp rx = RegExp(r'\{(.*?)\}');
+    Iterable<Match> matches = rx.allMatches(text);
+    for (Match m in matches) {
+      String match = m[0]!;
+      List<String> paranum = match.substring(1, match.length - 1).split(':');
+
+      int indexParams = int.parse(paranum[0].replaceAll("param", ""));
+      if (params != null && params.length >= indexParams) {
+        num value = params[indexParams - 1];
+        String valueStr = handleParameter(value, paranum[1]);
+        result = result.replaceAll("{${paranum[0]}:${paranum[1]}}", valueStr);
+      }
+    }
+    return result;
+  }
+
+  static String handleTextCss(String text) {
+    String result = text;
+    // replace dấu *
+    RegExp rx = RegExp(r'\*\*(.*?)\*\*');
+    Iterable<Match> matches = rx.allMatches(text);
+    for (Match e in matches) {
+      String valueBold = e[0]!;
+      String content = valueBold.substring(2, valueBold.length - 2);
+      content = "<b>$content</b>";
+      result = result.replaceAll(valueBold, content);
+    }
+    result = result.replaceAll("·", "✦ ");
+    result = result.replaceAll("<color=#", "<color color=#");
+    result = result.replaceAll("\\n", "\n");
+    return result;
+  }
+
+  static String boldColorText(String text) {
+    String result = text;
+    result = result.replaceAll("<color=#", "<b><color=#");
+    result = result.replaceAll("</color>", "</color></b>");
+    return result;
+  }
+
   static String getBackground(dynamic rarity) {
     switch (rarity) {
       case 1 || "1":

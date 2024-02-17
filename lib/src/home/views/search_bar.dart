@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:genshinfan/models/game/character.dart';
-import 'package:genshinfan/models/game/weapon.dart';
 import 'package:genshinfan/widgets/back_button.dart';
 
 import 'package:get/get.dart';

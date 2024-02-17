@@ -7,6 +7,8 @@ class Config {
     return "https://api.ambr.top/v2/";
   }
 
+  static String uriMora = "https://api.ambr.top/assets/UI/UI_ItemIcon_202.png";
+
   static const String darkMode = "keyDarkMode";
   static const String languageApp = 'keyLanguageApp';
 

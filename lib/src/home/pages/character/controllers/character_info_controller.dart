@@ -1,9 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:genshinfan/models/game/character.dart';
 import 'package:genshinfan/services/character.dart';
 import 'package:genshinfan/src/home/pages/character/controllers/character_controller.dart';
 import 'package:get/get.dart';
 
-class CharacterInfoController extends GetxController {
+class CharacterInfoController extends GetxController
+    with GetTickerProviderStateMixin {
+  TabController? tabController;
+  RxInt tab = 0.obs;
   RxBool loading = false.obs;
   RxInt sliderLevel = 24.obs;
   Rx<Character?> character = Rx(null);
@@ -170,6 +174,9 @@ class CharacterInfoController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+
+    tabController = TabController(length: 5, vsync: this);
+
     await getCharacter();
     calcSpecialKey();
     calcStat();
@@ -177,5 +184,11 @@ class CharacterInfoController extends GetxController {
     sliderLevel.listen((p0) {
       calcStat();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    tabController?.dispose();
   }
 }
