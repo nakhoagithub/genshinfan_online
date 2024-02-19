@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:genshinfan/models/game/character.dart';
+import 'package:genshinfan/src/home/pages/character/controllers/character_controller.dart';
 import 'package:genshinfan/src/home/pages/character/controllers/character_info_controller.dart';
 import 'package:genshinfan/src/home/pages/character/widgets/dialog_detail_talent.dart';
 import 'package:genshinfan/utils/config.dart';
@@ -20,6 +20,10 @@ class CharacterInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool checkCharacterController = Get.isRegistered<CharacterController>();
+    if (!checkCharacterController) {
+      Get.put(CharacterController());
+    }
     CharacterInfoController characterInfoController =
         Get.put(CharacterInfoController());
     return Scaffold(
@@ -605,5 +609,3 @@ class _Constellation extends StatelessWidget {
     );
   }
 }
-
-
